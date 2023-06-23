@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:width="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Детали автомобиля</title>
+</head>
+
+<link href="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.css"
+      rel="stylesheet"/>
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous">
+
+<body style="background: linen; padding-top: 10px; padding-left: 50px; padding-right: 10px" ;/>
+<div class="container">
+    <h2> Информация о деталях автомобиля </h2>
+
+    <table class="table table-border" id="details-table" style="width: 600px">
+        <thead class="table-light">
+        <tr>
+            <th>Серийный номер</th>
+            <th>Тип детали</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="carDetail : ${car.carDetailsList}">
+            <td th:text="${carDetail.serialNumber}"></td>
+            <td th:text="${carDetail.typeDetail.typeName}"></td>
+            <td>
+                <div class="col-md-auto">
+                    <a th:href="@{/cars/deleteCarDetail(carDetailId=${carDetail.id})}" class="btn btn-warning"
+                       style="width: 200px">Удалить</a>
+
+<!--                    <a th:href="@{/cars/carDetails(carId=${car.id})}" class="btn btn-light"-->
+                </div>
+            </td>
+        <tr>
+
+
+<!--            <div class="col-md-auto">-->
+<!--                <a th:href="@{/cars/changeCarDetail(carDetailId=${carDetail.id})}" class="btn btn-warning"-->
+<!--                   style="width: 200px">Удалить</a>-->
+<!--            </div>-->
+            <br>
+
+        </tr>
+
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/cars/addNewCarDetail(carId=${carId})}" class="btn btn-light">Добавить</a>
+</div>
+
+<a th:href="@{/cars/carsManagement}" style="position: fixed; left:50px; bottom: 40px;">Вернуться</a>
+
+</body>
+</html>

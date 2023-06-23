@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Сведения об автомобиле</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body style="background: linen; padding-top: 10px; padding-left: 50px; padding-right: 10px" ;>
+<div class="container">
+
+    <h2>Сведения</h2>
+    <form th:action="@{/cars/saveCarDetail(carId=${carId})}" th:object="${carDetail}" method="POST">
+
+        <input type="text" th:field="*{serialNumber}" placeholder="Серийный номер" class="form-control col-4 mb-4"/>
+        <tr>
+            <th>
+
+                <select class="form-control" style="width: 500px; right: 40px" ; id="typesDetail"
+                        name="typesDetail">
+                    <option value="">Тип детали</option>
+                    <option th:each="detail : ${typesDetail}"
+                            th:value="${detail.id}"
+                            th:text="${detail.typeName}">
+                        <input type="hidden" th:field="*{id}"/>
+                    </option>
+                </select>
+
+            </th>
+        </tr>
+        <br>
+        <button class="btn btn-primary" type="submit">Сохранить</button>
+    </form>
+    <br>
+    <a th:href="@{/cars/carsManagement}" style="position: fixed; left:250px; bottom: 40px;">Вернуться на главную страницу</a>
+
+</div>
+</body>
+</html>

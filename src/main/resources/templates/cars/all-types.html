@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:width="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Бренды автомобилей</title>
+
+  <link href="https://cdn.datatables.net/v/bs4/dt-1.13.4/datatables.min.css"
+        rel="stylesheet"/>
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+</head>
+<body style="background: linen">
+<div class="container">
+  <h2> Список типов запчастей </h2>
+
+  <table class="table table-border" id="type-table" style="width: 600px;">
+    <thead>
+    <tr>
+      <th>Название</th>
+    </tr>
+    </thead>
+    <tr th:each="type : ${typeDetails}">
+      <td th:text="${type.typeName}"></td>
+    </tr>
+  </table>
+  <a th:href="@{/cars/addTypeCarDetail}" class="btn btn-light">Добавить новый тип детали</a>
+</div>
+
+<a th:href="@{/cars/carsManagement}" style="position: fixed; left:50px; bottom: 40px;">Вернуться</a>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/v/bs4/jq-3.6.0/dt-1.13.4/datatables.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#type-table").DataTable({
+      'aoColumnDefs': [{
+        'bSortable': false,
+        'aTargets': [-1] /* 1st one, start by the right */
+      }]
+    });
+  })
+</script>
+
+</body>
+</html>

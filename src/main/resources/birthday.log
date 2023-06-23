@@ -1,0 +1,5 @@
+handlers=java.util.logging.FileHandler
+.level=INFO
+java.util.logging.FileHandler.pattern=birthday.log
+java.util.logging.FileHandler.append=true
+java.util.logging.FileHandler.level=INFO
